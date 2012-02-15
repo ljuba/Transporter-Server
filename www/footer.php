@@ -1,0 +1,3 @@
+<?php
+print '</body></html>';
+?>

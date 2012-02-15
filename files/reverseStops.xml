@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<body>
+	<agency shortTitle="actransit">
+
+		<!-- route 7 : two intersections of the same name -->
+		<stop tag="0500080" reverseStopTag="0500090"/>
+		<stop tag="0500090" reverseStopTag="0500080"/>
+		
+		<stop tag="0500100" reverseStopTag="0500070"/>
+		<stop tag="0500070" reverseStopTag="0500100"/>
+		
+		<!-- route 25 : loop route. start/end stop have same name-->
+		<stop tag="300500850" reverseStopTag="0500850"/>
+		<stop tag="0500850" reverseStopTag="300500850"/>
+		
+		<stop tag="300500890" reverseStopTag="0500890"/>
+		<stop tag="0500890" reverseStopTag="300500890"/>
+		
+		<!-- route 39 : end of line has two stops of the same name in one direction -->
+		<stop tag="1019390" reverseStopTag="301019390"/>
+		<stop tag="301019390" reverseStopTag="1019390"/>
+		
+		<stop tag="1019380" reverseStopTag="1019390"/>
+		
+		<!-- route 52 : bus visits same intersection twice in both directions,
+		 	 but there are only 3 unique stop tags -->
+		<stop tag="0200180" reverseStopTag="0200190"/>
+		<stop tag="0200190" reverseStopTag="0200180"/>
+		
+		<stop tag="300200180" reverseStopTag="0200190"/>
+		
+		
+		<!-- route 54, 654, 655 : 3 stops of the same name, 2 at a intersection, one further down -->
+		<stop tag="1001970" reverseStopTag="1001980"/>
+		<stop tag="1001980" reverseStopTag="1001970"/>
+		
+		<stop tag="1001990" reverseStopTag=""/>
+		
+	</agency>
+	
+	<agency shortTitle="sf-muni">
+		
+		<!-- stops that don't have the same name, but are reverseStops -->		
+		<stop tag="4509" reverseStopTag="4510"/>
+		<stop tag="4510" reverseStopTag="4509"/>
+		
+		<stop tag="7217" reverseStopTag="6992"/>
+		<stop tag="6992" reverseStopTag="7217"/>
+		
+		<stop tag="6994" reverseStopTag="5731"/>
+		<stop tag="5731" reverseStopTag="6994"/>
+		
+		<stop tag="6995" reverseStopTag="5417"/>
+		<stop tag="5417" reverseStopTag="6995"/>	
+		
+		<stop tag="6997" reverseStopTag="5727"/>
+		<stop tag="5727" reverseStopTag="6997"/>	
+		
+		<stop tag="5419" reverseStopTag="6996"/>
+		<stop tag="6996" reverseStopTag="5419"/>
+		
+		<stop tag="6998" reverseStopTag="5726"/>
+		<stop tag="5726" reverseStopTag="6998"/>
+		
+		<stop tag="6991" reverseStopTag="5728"/>
+		<stop tag="5728" reverseStopTag="6991"/>
+		
+		<stop tag="5675" reverseStopTag="5681"/>
+		<stop tag="5681" reverseStopTag="5675"/>
+				
+		<stop tag="5654" reverseStopTag="5687"/>
+		
+		<stop tag="5653" reverseStopTag="5691"/>
+		
+		<!--  route N : end of line has two stops of the same name in one direction -->
+		<stop tag="5223" reverseStopTag="5221"/>
+		<stop tag="5221" reverseStopTag="5223"/>
+		
+		<stop tag="7219" reverseStopTag="5223"/>
+		
+		<!-- route 9 -->
+		<stop tag="4895" reverseStopTag="7127"/>
+		<stop tag="7127" reverseStopTag="4895"/>
+	
+		<stop tag="34895" reverseStopTag="7127"/>
+		
+		<!-- route 12 -->
+		<stop tag="3476" reverseStopTag="3477"/>
+		<stop tag="3477" reverseStopTag="3476"/>
+	
+		<stop tag="33476" reverseStopTag="3476"/>
+		
+		<!-- route 18 -->
+		<stop tag="4873" reverseStopTag="4874"/>
+		<stop tag="4874" reverseStopTag="4873"/>
+	
+		<stop tag="34873" reverseStopTag="4873"/>
+	
+		<!-- route 19 -->
+		<stop tag="5501" reverseStopTag="5502"/>
+		<stop tag="5502" reverseStopTag="5501"/>
+	
+		<stop tag="5503" reverseStopTag="5504"/>
+		<stop tag="5504" reverseStopTag="5503"/>
+	
+		<!-- route 13 -->
+		<stop tag="5863" reverseStopTag="5864"/>
+		<stop tag="5864" reverseStopTag="5863"/>
+	
+		<stop tag="35863" reverseStopTag="5863"/>
+	
+		<!-- route 29 -->
+		<stop tag="5347" reverseStopTag="5348"/>
+		<stop tag="5348" reverseStopTag="5347"/>
+	
+		<stop tag="5345" reverseStopTag="5346"/>
+		<stop tag="5346" reverseStopTag="5345"/>
+		
+		<!-- route 13 -->
+		<stop tag="3073" reverseStopTag="3074"/>
+		<stop tag="3074" reverseStopTag="3073"/>
+	
+		<stop tag="33073" reverseStopTag="3073"/>
+		
+		<!-- route 31 -->
+		<stop tag="3927" reverseStopTag="7204"/>
+		<stop tag="7204" reverseStopTag="3927"/>
+	
+		<stop tag="33927" reverseStopTag="7204"/>
+		
+		<!-- route 36 -->
+		<stop tag="5245" reverseStopTag="5247"/>
+		<stop tag="5247" reverseStopTag="5245"/>
+	
+		<stop tag="35247" reverseStopTag="5245"/>
+		
+		<!-- route 36 more -->
+		<stop tag="6666" reverseStopTag="6668"/>
+		<stop tag="6668" reverseStopTag="6666"/>
+        
+		<stop tag="6667" reverseStopTag="4654"/>
+		<stop tag="4654" reverseStopTag="6667"/>	
+		
+		<!-- route 61 -->
+		<stop tag="3857" reverseStopTag="3855"/>
+		<stop tag="3855" reverseStopTag="3857"/>
+	
+		<stop tag="7294" reverseStopTag="3855"/>
+		
+
+	</agency>
+</body>

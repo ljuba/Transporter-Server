@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MUNI changes made after May 8 2010 service changes -->
+<!-- Unexpected AC Transit changes on June 23 2010 -->
+<body>
+	<agency shortTitle="actransit">
+		<route tag="DB">
+			<direction tag="DB_51_1" />
+			<direction tag="DB_50_0" />
+		</route>
+		
+		<route tag="25">
+			<direction tag="25_38_0" />
+			<direction tag="25_40_1" />
+		</route>
+				
+		<route tag="65">
+			<direction tag="65_61_0" />
+			<direction tag="65_64_1" />
+		</route>
+		
+		<route tag="67">
+			<direction tag="67_71_1" />
+			<direction tag="67_72_0" />
+		</route>
+		
+		<route tag="72M">
+			<direction tag="72M_89_0" />
+			<direction tag="72M_88_1" />
+		</route>
+	</agency>
+	
+	<agency shortTitle="sf-muni">
+		
+		<route tag="38">
+			<direction tag="38_IB3" />
+			<direction tag="38_OB3" />	
+		</route>
+		
+		<route tag="N OWL">
+			<direction tag="N__OWLIB2" />
+			<direction tag="N__OWLOB2" />	
+		</route>	
+		
+	</agency>
+</body>

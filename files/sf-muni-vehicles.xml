@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file indicates the vehicle associated with each route. SF Muni
+operates busses, metro trains, light rail, and cable cars -->
+<body copyright="All data copyright San Francisco Muni 2010.">
+	<route tag="F" title="F-Market &amp; Wharves" vehicle="streetcar" />
+	<route tag="J" title="J-Church" vehicle="metro" />
+	<route tag="K" title="K-Bus" vehicle="bus"/>
+	<route tag="KT" title="KT-Ingleside/Third Street" vehicle="metro" />
+	<route tag="L" title="L-Taraval" vehicle="metro" />
+	<route tag="M" title="M-Bus" vehicle="bus" />
+	<route tag="N" title="N-Judah" vehicle="metro" />
+	<route tag="1" title="1-California" vehicle="bus" />
+	<route tag="1AX" title="1AX-California A Express" vehicle="bus" />
+	<route tag="1BX" title="1BX-California B Express" vehicle="bus" />
+	<route tag="2" title="2-Clement" vehicle="bus" />
+	<route tag="3" title="3-Jackson" vehicle="bus" />
+	<route tag="5" title="5-Fulton" vehicle="bus" />
+	<route tag="6" title="6-Parnassus" vehicle="bus" />
+	<route tag="8AX" title="8AX-Bayshore A Exp" vehicle="bus" />
+	<route tag="8BX" title="8BX-Bayshore B Exp" vehicle="bus" />
+	<route tag="8X" title="8X-Bayshore Exp" vehicle="bus" />
+	<route tag="9" title="9-San Bruno" vehicle="bus" />
+	<route tag="9L" title="9L-San Bruno Limited" vehicle="bus" />
+	<route tag="10" title="10-Townsend" vehicle="bus" />
+	<route tag="12" title="12-Folsom/Pacific" vehicle="bus" />
+	<route tag="14" title="14-Mission" vehicle="bus" />
+	<route tag="14L" title="14L-Mission Limited" vehicle="bus" />
+	<route tag="14X" title="14X-Mission Express" vehicle="bus" />
+	<route tag="16X" title="16X-Noriega Express" vehicle="bus" />
+	<route tag="17" title="17-Park Merced" vehicle="bus" />
+	<route tag="18" title="18-46th Avenue" vehicle="bus" />
+	<route tag="19" title="19-Polk" vehicle="bus" />
+	<route tag="21" title="21-Hayes" vehicle="bus" />
+	<route tag="22" title="22-Fillmore" vehicle="bus" />
+	<route tag="23" title="23-Monterey" vehicle="bus" />
+	<route tag="24" title="24-Divisadero" vehicle="bus" />
+	<route tag="27" title="27-Bryant" vehicle="bus" />
+	<route tag="28" title="28-19th Avenue" vehicle="bus" />
+	<route tag="28L" title="28L-19th Avenue Limited" vehicle="bus" />
+	<route tag="29" title="29-Sunset" vehicle="bus" />
+	<route tag="30" title="30-Stockton" vehicle="bus" />
+	<route tag="30X" title="30X-Marina Express" vehicle="bus" />
+	<route tag="31" title="31-Balboa" vehicle="bus" />
+	<route tag="31AX" title="31AX-Balboa A Express" vehicle="bus" />
+	<route tag="31BX" title="31BX-Balboa B Express" vehicle="bus" />
+	<route tag="33" title="33-Stanyan" vehicle="bus" />
+	<route tag="35" title="35-Eureka" vehicle="bus" />
+	<route tag="36" title="36-Teresita" vehicle="bus" />
+	<route tag="37" title="37-Corbett" vehicle="bus" />
+	<route tag="38" title="38-Geary" vehicle="bus" />
+	<route tag="38AX" title="38AX-Geary A Express" vehicle="bus" />
+	<route tag="38BX" title="38BX-Geary B Express" vehicle="bus" />
+	<route tag="38L" title="38L-Geary Limited" vehicle="bus" />
+	<route tag="39" title="39-Coit" vehicle="bus" />
+	<route tag="41" title="41-Union" vehicle="bus" />
+	<route tag="43" title="43-Masonic" vehicle="bus" />
+	<route tag="44" title="44-O'Shaughnessy" vehicle="bus" />
+	<route tag="45" title="45-Union/Stockton" vehicle="bus" />
+	<route tag="47" title="47-Van Ness" vehicle="bus" />
+	<route tag="48" title="48-Quintara - 24th Street" vehicle="bus" />
+	<route tag="49" title="49-Mission-Van Ness" vehicle="bus" />
+	<route tag="52" title="52-Excelsior" vehicle="bus" />
+	<route tag="54" title="54-Felton" vehicle="bus" />
+	<route tag="56" title="56-Rutland" vehicle="bus" />
+	<route tag="66" title="66-Quintara" vehicle="bus" />
+	<route tag="67" title="67-Bernal Heights" vehicle="bus" />
+	<route tag="71" title="71-Haight-Noriega" vehicle="bus" />
+	<route tag="71L" title="71L-Haight-Noriega Limited" vehicle="bus" />
+	<route tag="76" title="76-Marin Headlands" vehicle="bus" />
+	<route tag="80X" title="80X-Gateway Express" vehicle="bus" />
+	<route tag="81X" title="81X-Caltrain Express" vehicle="bus" />
+	<route tag="82X" title="82X-Levi Plaza Express" vehicle="bus" />
+	<route tag="88" title="88-B.A.R.T. Shuttle" vehicle="bus" />
+	<route tag="90" title="90-San Bruno Owl" vehicle="bus" />
+	<route tag="91" title="91-Owl" vehicle="bus" />
+	<route tag="108" title="108-Treasure Island" vehicle="bus" />
+	<route tag="K OWL" title="K-Owl" vehicle="bus" />
+	<route tag="L OWL" title="L-Owl" vehicle="bus" />
+	<route tag="M OWL" title="M-Owl" vehicle="bus" />
+	<route tag="N OWL" title="N-Owl" vehicle="bus" />
+	<route tag="T OWL" title="T-Owl" vehicle="bus" />
+	<route tag="59" title="Powell/Mason Cable Car" vehicle="cablecar" />
+	<route tag="60" title="Powell/Hyde Cable Car" vehicle="cablecar" />
+	<route tag="61" title="California Cable Car" vehicle="cablecar" />
+</body>
