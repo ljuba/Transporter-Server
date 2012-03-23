@@ -28,8 +28,9 @@ This code was written by Thejo Kote, a classmate of Ljuba's (the iPhone
 app's creator) at the UC Berkeley iSchool.
 
 Documentation for the APIs use:
-BART API: http://api.bart.gov/docs/overview/index.aspx
-NextBus API: http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf
+
+* [BART API](http://api.bart.gov/docs/overview/index.aspx)
+* [NextBus API](http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf)
 
 Kronos server installation instructions:
 
@@ -42,10 +43,13 @@ Pre-requisites
 - PostgreSQL server - 8.3 or above
 - Apache with mod_php5 - Test that PHP scripts can be executed by creating
 a script with the following code and loading it in a browser:
+
+```
 <?php
 //Refer to http://php.net/phpinfo for details
 phpinfo();
 ?>
+```
 
 The page should provide details about the PHP installation, installed extensions
 etc. Knowing that should help in determining whether the next step is necessary.
@@ -60,20 +64,26 @@ PHP extension dependencies
     the package management system. The driver has to be installed separately.
 - APC (not mandatory, but recommended for improved performance)
 
-The last two can be installed using the pecl command (http://pecl.php.net) as:
+The last two can be installed using [pecl](http://pecl.php.net):
+
+```
 pecl install pdo_pgsql
 pecl install apc
+```
 
-To run the pecl command the php5-devel and php5-pear packages need to be installed.
-To install pdo_pgsql the postgresql-devel package is required.
-To install apc the apache2-devel package is required.
+To run the `pecl` command the `php5-devel` and `php5-pear` packages need to be installed.
+To install `pdo_pgsql` the `postgresql-devel` package is required.
+To install `apc` the `apache2-devel` package is required.
 
 Database setup
 ==============
 - Create a database named "kronos" without the quotes.
 - Create a user who has permissions to read from and write to the database.
 - Install the tables and default data like so - (>> is the shell prompt)
-    >> pgsql -d kronos -f KRONOS_ROOT/dbschema/schema.sql
+
+`
+pgsql -d kronos -f KRONOS_ROOT/dbschema/schema.sql
+`
 
 PHP application deployment
 ==========================
@@ -108,8 +118,9 @@ This is normal. You'll see an output of 1 on the page (or more, if you've added
 any debug print statements in the code) after the script completes execution.
 
 On the server, the same script needs to be executed once a day. It is done
-through a cron job like so -
-0 19 * * * curl http://exergydesign.com/update.php >> /dev/null 2>&1
+through a cron job like so:
+
+`0 19 * * * curl http://exergydesign.com/update.php >> /dev/null 2>&1`
 
 The KRONOS_ROOT/www/update.php script communicates with NextBus and BART,
 updates the database with a new version and creates the XML files. It does not
