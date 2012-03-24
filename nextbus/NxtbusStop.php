@@ -30,7 +30,7 @@ class NxtbusStop {
 
     public function updateStops() {
         $routeArray = Route::getRoutes($this->agency);
-        
+
         $flipStopMap = $this->getFlipStopOverrides();
         $stopTitleMap = array();
         $stopLatLonMap = array();
@@ -117,7 +117,7 @@ class NxtbusStop {
                             foreach ($fFlipStopInOppDir as $tempStopForOppDir) {
                                 $fstopLatLonMap[] = "$tempStopForOppDir," . implode(",", $stopLatLonMap[$tempStopForOppDir]);
                             }
-                            
+
                             $logStr = "More than one stop in diff. direction [agency: ".
                                 $agencyName . "] [route: ". $routeTag ."] [current stop|dir: $fStopTag|$fDirTag] [other stops|dir: " .
                                 implode(",", $fFlipStopInOppDir) . "|$fDirTagDiffDir] [stop title: " .
@@ -130,7 +130,7 @@ class NxtbusStop {
                             $flipStopMap[$tempFlipStopTag] = $fStopTag;
                         }
                     }
-                } // Inner loop                
+                } // Inner loop
             } //Find flip stops
         } //Routes
 
@@ -181,7 +181,7 @@ class NxtbusStop {
      * in the same route), extract and return the stopTags in direction-2 that
      * have the same title as stopTitle. None of the stopTags that are returned
      * are the same as the stopTag of direction-1 that is passed in.
-     * 
+     *
      * @param String $stopTag
      * @param String $stopTitle
      * @param Array $stopsInOppDir
@@ -206,12 +206,12 @@ class NxtbusStop {
         return $finalArray;
     }
 
-    
+
 
     /**
      * Read flip stop overrides from a file and return them as an array.
      * NOTE: This method returns the flip stops only for the agency being processed
-     * 
+     *
      * @return Array - stopTag => flipStopTag
      */
     private function getFlipStopOverrides() {
@@ -222,7 +222,7 @@ class NxtbusStop {
 
         //TODO: Check for exception
         $xmlObjBuilder = new XmlObjBuilder($filePath);
-	$xml = $xmlObjBuilder->getXmlObj();
+        $xml = $xmlObjBuilder->getXmlObj();
 
         $flipStopMap = array();
 

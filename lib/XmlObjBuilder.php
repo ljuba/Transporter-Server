@@ -20,7 +20,7 @@ class XmlObjBuilder {
         $xmlStr = $this->getData($getNextBus);
         //$xmlStr = file_get_contents($this->dataPath);
 
-	$xml = new SimpleXMLElement($xmlStr);
+        $xml = new SimpleXMLElement($xmlStr);
 
         return $xml;
     }

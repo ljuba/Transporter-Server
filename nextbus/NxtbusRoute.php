@@ -57,7 +57,7 @@ class NxtbusRoute {
             throw new Exception($ex->getMessage());
         }
     }
-    
+
     private function getVehicleTypeOverride() {
         $agencyShortTitle = $this->agency->getShortTitle();
 
@@ -66,7 +66,7 @@ class NxtbusRoute {
 
         //TODO: Check for exception
         $xmlObjBuilder = new XmlObjBuilder($filePath);
-	$xml = $xmlObjBuilder->getXmlObj();
+        $xml = $xmlObjBuilder->getXmlObj();
 
         $vehicleOverrides = array();
 

@@ -28,7 +28,7 @@ class NxtbusDirection {
         } catch (Exception $ex) {
             throw new Exception ("Nextbus directions could not be updated. Error building route array.");
         }
-        
+
         //Add the directions for every route
         foreach($this->xml->route as $r) {
             $routeTag = (string) $r['tag'];
@@ -47,7 +47,7 @@ class NxtbusDirection {
                 $dirObj->setTitle( (string) $d['title']);
                 $dirObj->setName( (string)  $d['name']);
                 $dirObj->setUseForUi( $useForUiValue );
-                $dirObj->setShow( $this->getShowValue($routeTag, $dirTag, 
+                $dirObj->setShow( $this->getShowValue($routeTag, $dirTag,
                         $useForUiValue) );
 
                 $directionInfo[$dirTag] = $dirObj;
@@ -61,12 +61,12 @@ class NxtbusDirection {
             } catch (Exception $ex) {
                 throw new Exception($ex->getMessage());
             }
-        }        
+        }
     }
 
     /**
      * Check what the value of the show column should be
-     * 
+     *
      * @param String $routeTag
      * @param String $dirTag
      * @param Boolean $userForUiValue
@@ -82,7 +82,7 @@ class NxtbusDirection {
             } else {
                 return false;
             }
-            
+
         } else {
             return $userForUiValue;
         }
@@ -94,8 +94,8 @@ class NxtbusDirection {
 
         //TODO: Check for exception
         $xmlObjBuilder = new XmlObjBuilder($filePath);
-	$xml = $xmlObjBuilder->getXmlObj();
-        
+        $xml = $xmlObjBuilder->getXmlObj();
+
         $routeArray = array();
 
         foreach ($xml->agency as $a) {
