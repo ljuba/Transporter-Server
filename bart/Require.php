@@ -9,5 +9,3 @@ require KRONOS_BART.'BartStopDirMap.php';
 require KRONOS_BART.'BartApiEndPoints.php';
 require KRONOS_BART.'BartXmlObjBuilder.php';
 require KRONOS_BART.'BartColorCodes.php';
-
-?>

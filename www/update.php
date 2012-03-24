@@ -116,4 +116,3 @@ try {
 
 $subject = "Kronos Server update for " . date("Y-m-d");
 Util::mail($config['email ids'], $subject, $mailMessage);
-?>

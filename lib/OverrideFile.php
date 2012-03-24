@@ -26,5 +26,3 @@ class OverrideFile {
         return file_put_contents($filePath, $xmlStr);
     }
 }
-
-?>

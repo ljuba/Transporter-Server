@@ -5,4 +5,3 @@ final class Environment {
     const STAGE = "stage";
     const PRODUCTION = "production";
 }
-?>

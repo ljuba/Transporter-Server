@@ -44,4 +44,3 @@ class Configuration {
         return self::$appConfig['environment'];
     }
 }
-?>

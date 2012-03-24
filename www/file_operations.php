@@ -23,5 +23,3 @@ if(isset($_POST['filetype'])) {
         //print $ex->getMessage();
     }
 }
-
-?>

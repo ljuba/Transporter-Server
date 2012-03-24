@@ -62,5 +62,3 @@ function generateXMLFile(Agency $agencyObj) {
 
     Util::prettyPrintXml($xml, $fileName);
 }
-
-?>

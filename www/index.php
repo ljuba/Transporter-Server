@@ -68,4 +68,5 @@ foreach($versions as $v) {
 
 </table>
         
-<?php require 'footer.php'; ?>
+<?php
+require 'footer.php';

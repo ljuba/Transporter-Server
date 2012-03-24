@@ -10,4 +10,3 @@ class DBException extends PDOException {
         parent::__construct($message, 0);
     }
 }
-?>

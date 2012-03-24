@@ -8,5 +8,3 @@ require KRONOS_NXTBUS.'NxtbusStopDirMap.php';
 
 require KRONOS_NXTBUS.'NxtbusXmlObjBuilder.php';
 require KRONOS_NXTBUS.'NxtbusApiEndPoints.php';
-
-?>

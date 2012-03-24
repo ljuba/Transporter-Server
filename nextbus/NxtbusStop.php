@@ -244,4 +244,3 @@ class NxtbusStop {
         return $flipStopMap;
     }
 }
-?>

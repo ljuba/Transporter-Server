@@ -116,4 +116,3 @@ class NxtbusDirection {
         return $routeArray;
     }
 }
-?>

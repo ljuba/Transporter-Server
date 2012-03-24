@@ -126,4 +126,3 @@ class DirectionUpdate extends TableUpdate {
         return $changes;
     }
 }
-?>

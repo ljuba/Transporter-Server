@@ -70,4 +70,3 @@ class BartDirection {
         return trim($title);
     }
 }
-?>

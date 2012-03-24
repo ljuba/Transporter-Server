@@ -78,6 +78,4 @@ displayTable($routeArray);
 <?php
 $routeArray = getRoutes($agencyArray['sf-muni'], $version);
 displayTable($routeArray);
-?>
-
-<?php require 'footer.php'; ?>
+require 'footer.php';

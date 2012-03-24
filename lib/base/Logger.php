@@ -54,4 +54,3 @@ class Logger {
         $rc = file_put_contents($filepath, $log, FILE_APPEND);
     }
 }
-?>

@@ -228,4 +228,3 @@ abstract class TableUpdate {
      */
     //abstract protected function dataUpdated(Direction $o, Direction $n);
 }
-?>

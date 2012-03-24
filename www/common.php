@@ -19,5 +19,3 @@ Configuration::setAppConfig($config);
 
 //Configure the Logger
 Logger::configure();
-
-?>

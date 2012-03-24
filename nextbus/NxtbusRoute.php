@@ -84,4 +84,3 @@ class NxtbusRoute {
         return $vehicleOverrides;
     }
 }
-?>
