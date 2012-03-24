@@ -52,29 +52,29 @@ class RouteUpdate extends TableUpdate {
             $columnCnt = count($columns);
 
             //Check and add the optional columns
-            if($r->getLatMin()) {
+            if ($r->getLatMin()) {
                 $columns[] = 'lat_min';
                 $boundParams[] = $r->getLatMin();
                 $columnCnt++;
             }
-            if($r->getLatMax()) {
+            if ($r->getLatMax()) {
                 $columns[] = 'lat_max';
                 $boundParams[] = $r->getLatMax();
                 $columnCnt++;
             }
-            if($r->getLonMin()) {
+            if ($r->getLonMin()) {
                 $columns[] = 'lon_min';
                 $boundParams[] = $r->getLonMin();
                 $columnCnt++;
             }
-            if($r->getLonMax()) {
+            if ($r->getLonMax()) {
                 $columns[] = 'lon_max';
                 $boundParams[] = $r->getLonMax();
                 $columnCnt++;
             }
 
 
-            $this->dbObj->bindParams( $boundParams );
+            $this->dbObj->bindParams($boundParams);
             //var_dump($boundParams);
 
             $query = "INSERT INTO route (". implode(",", $columns) . ", created_date)
@@ -82,7 +82,7 @@ class RouteUpdate extends TableUpdate {
 
             $this->dbObj->query($query);
 
-            if($this->dbObj->rows_affected != 1) {
+            if ($this->dbObj->rows_affected != 1) {
                 //$this->dbObj->debug();exit;
                 throw new DBException("Addition of route failed [agency:".
                         $this->agency->getId() ."] [route tag:".
@@ -108,28 +108,28 @@ class RouteUpdate extends TableUpdate {
     protected function dataUpdated(Route $o, Route $n) {
         $changes = array();
 
-        if($o->getTitle() != $n->getTitle()) {
+        if ($o->getTitle() != $n->getTitle()) {
             $changes["title"] = $o->getTitle(). " | " .$n->getTitle();
         }
-        if($o->getShortTitle() != $n->getShortTitle()) {
+        if ($o->getShortTitle() != $n->getShortTitle()) {
             $changes["short title"] = $o->getShortTitle(). " | " .$n->getShortTitle();
         }
-        if($o->getColor() != $n->getColor()) {
+        if ($o->getColor() != $n->getColor()) {
             $changes["color"] = $o->getColor(). " | " .$n->getColor();
         }
-        if($o->getLatMax() != $n->getLatMax()) {
+        if ($o->getLatMax() != $n->getLatMax()) {
             $changes["lat max"] = $o->getLatMax(). " | " .$n->getLatMax();
         }
-        if($o->getLatMin() != $n->getLatMin()) {
+        if ($o->getLatMin() != $n->getLatMin()) {
             $changes["lat min"] = $o->getLatMin(). " | " .$n->getLatMin();
         }
-        if($o->getLonMax() != $n->getLonMax()) {
+        if ($o->getLonMax() != $n->getLonMax()) {
             $changes["lon max"] = $o->getLonMax(). " | " .$n->getLonMax();
         }
-        if($o->getLonMin() != $n->getLonMin()) {
+        if ($o->getLonMin() != $n->getLonMin()) {
             $changes["lon min"] = $o->getLonMin(). " | " .$n->getLonMin();
         }
-        if($o->getVehicleType() != $n->getVehicleType()) {
+        if ($o->getVehicleType() != $n->getVehicleType()) {
             $changes["vehicle type"] = $o->getVehicleType(). " | " .$n->getVehicleType();
         }
         /*

@@ -4,7 +4,7 @@ define("ROOT", "../");
 require ROOT . 'www/common.php';
 
 //Return the contents of a requested file
-if(isset($_GET['filetype'])) {
+if (isset($_GET['filetype'])) {
     try {
         print htmlentities(OverrideFile::getContents($_GET['filetype']));
     } catch (Exception $ex) {
@@ -13,7 +13,7 @@ if(isset($_GET['filetype'])) {
 }
 
 //Update file contents
-if(isset($_POST['filetype'])) {
+if (isset($_POST['filetype'])) {
     try {
         OverrideFile::updateContents($_POST['filetype'],
                 urldecode(trim($_POST['filecontents'])));

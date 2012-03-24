@@ -54,7 +54,7 @@ class DB {
      * Constructor
      */
     public function __construct(array $d) {
-        if(! isset($d['db_type']) || ! isset($d['db_name']) ) {
+        if (!isset($d['db_type']) || !isset($d['db_name'])) {
             throw new DBException("DB type and name are required");
         }
 
@@ -78,7 +78,7 @@ class DB {
      * @throws DBException
      */
     public function getHandle() {
-        if(isset(self::$pool[$this->instanceName]) &&
+        if (isset(self::$pool[$this->instanceName]) &&
             self::$pool[$this->instanceName] instanceof PDO) {
             return self::$pool[$this->instanceName];
         }
@@ -103,21 +103,21 @@ class DB {
         $this->func_call = "\$db->get_results(\"$query\", $output)";
 
         // If there is a query then perform it if not then use cached results..
-        if ( $query ) {
+        if ($query) {
             $this->query($query);
         }
 
         // Send back array of objects. Each row is an object
-        if ( $output == self::OBJECT ) {
+        if ($output == self::OBJECT) {
             return $this->last_result;
 
-        } else if ( $output == self::ARRAY_A || $output == self::ARRAY_N ) {
-            if ( $this->last_result ) {
+        } else if ($output == self::ARRAY_A || $output == self::ARRAY_N) {
+            if ($this->last_result) {
                 $i=0;
-                foreach( $this->last_result as $row ) {
+                foreach ($this->last_result as $row) {
                     $new_array[$i] = get_object_vars($row);
 
-                    if ( $output == self::ARRAY_N ) {
+                    if ($output == self::ARRAY_N) {
                         $new_array[$i] = array_values($new_array[$i]);
                     }
 
@@ -138,22 +138,22 @@ class DB {
         $this->func_call = "\$db->get_row(\"$query\",$output,$row_num)";
 
         // If there is a query then perform it if not then use cached results..
-        if ( $query ) {
+        if ($query) {
             $this->query($query);
         }
 
         // If the output is an object then return object using the row offset..
-        if ( $output == self::OBJECT ) {
+        if ($output == self::OBJECT) {
             return isset($this->last_result[$row_num]) ?
                     $this->last_result[$row_num] : null;
         }
         // If the output is an associative array then return row as such..
-        else if ( $output == self::ARRAY_A ) {
+        else if ($output == self::ARRAY_A) {
             return isset($this->last_result[$row_num]) ?
                     get_object_vars($this->last_result[$row_num]) : null;
         }
         // If the output is an numerical array then return row as such..
-        else if ( $output == self::ARRAY_N ) {
+        else if ($output == self::ARRAY_N) {
             return isset($this->last_result[$row_num]) ?
                     array_values(get_object_vars($this->last_result[$row_num])) : null;
         }
@@ -170,12 +170,12 @@ class DB {
         $this->func_call = "\$db->get_var(\"$query\",$col_num,$row_num)";
 
         // If there is a query then perform it if not then use cached results..
-        if ( $query ) {
+        if ($query) {
             $this->query($query);
         }
 
         // Extract var out of cached results based on $col_num and $row_num vals
-        if ( isset($this->last_result[$row_num]) ) {
+        if (isset($this->last_result[$row_num])) {
             $values = array_values(get_object_vars($this->last_result[$row_num]));
         }
 
@@ -188,7 +188,7 @@ class DB {
         $rowCount = count($resultRows);
         $colValues = array();
 
-        foreach($resultRows as $row) {
+        foreach ($resultRows as $row) {
             $colValues[] = $row[$x];
         }
 
@@ -226,7 +226,7 @@ class DB {
             //Get a handle
             $dbh = $this->getHandle();
 
-            if(count($this->boundParams) > 0) {
+            if (count($this->boundParams) > 0) {
                 $this->statementHandle = $dbh->prepare($query);
 
                 //Try the commented code below if you have problems with data types
@@ -246,11 +246,11 @@ class DB {
 
             //Get the last insert id if the database is MySQL
             //Postgres needs an explicit call to $this->getLastInsertId() with a sequence name
-            if ( preg_match("/^(insert|replace)\s+/i",$query) && $this->dbType == self::MYSQL) {
+            if (preg_match("/^(insert|replace)\s+/i",$query) && $this->dbType == self::MYSQL) {
                 $this->insert_id = $this->getLastInsertId();
             }
             //Get the results if it is a select query
-            else if ( preg_match("/^select\s+/i",$query) ) {
+            else if (preg_match("/^select\s+/i",$query)) {
                 $this->last_result = $this->statementHandle->fetchAll(PDO::FETCH_OBJ);
             }
 
@@ -267,7 +267,7 @@ class DB {
     }
 
     private function afterQueryCleanUp() {
-        if($this->statementHandle instanceof PDOStatement) {
+        if ($this->statementHandle instanceof PDOStatement) {
             $this->statementHandle->closeCursor();
         }
 
@@ -315,23 +315,23 @@ class DB {
 
         echo "<blockquote>";
 
-        if ( $this->last_error )
+        if ($this->last_error)
         {
             echo "<font face=arial size=2 color=000099><b>Last Error --</b> [<font color=000000><b>$this->last_error</b></font>]<p>";
         }
 
         echo "<font face=arial size=2 color=000099><b>Query</b> [$this->num_queries] <b>--</b> ";
         echo "[<font color=000000><b>$this->last_query</b></font>]</font><p>";
-        if( count($this->debugBoundParams) > 0 ) {
+        if (count($this->debugBoundParams) > 0) {
             echo'<font face=arial size=2 color=000099><b>Bound Parameters</b><pre>';
             var_dump($this->debugBoundParams);
             echo'</pre></font>';
         }
 
-            echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
-            echo "<blockquote>";
+        echo "<font face=arial size=2 color=000099><b>Query Result..</b></font>";
+        echo "<blockquote>";
 
-        if ( $this->last_result )
+        if ($this->last_result)
         {
 
             // =====================================================
@@ -341,7 +341,7 @@ class DB {
             echo "<tr bgcolor=eeeeee><td nowrap valign=bottom><font color=555599 face=arial size=2><b>(row)</b></font></td>";
 
 
-            foreach ( $this->last_result[0] as $key => $value ) {
+            foreach ($this->last_result[0] as $key => $value) {
                 echo "<td nowrap align=left valign=top><span style='font-family: arial; font-size: 10pt; font-weight: bold;'>{$key}</span></td>";
             }
 
@@ -352,11 +352,11 @@ class DB {
 
             $i=0;
             //var_dump($this->get_results(null,self::ARRAY_N));
-            foreach ( $this->get_results(null,self::ARRAY_N) as $one_row ) {
+            foreach ($this->get_results(null,self::ARRAY_N) as $one_row) {
                 $i++;
                 echo "<tr bgcolor=ffffff><td bgcolor=eeeeee nowrap align=middle><font size=2 color=555599 face=arial>$i</font></td>";
 
-                foreach ( $one_row as $item ) {
+                foreach ($one_row as $item) {
                     echo "<td nowrap><font face=arial size=2>$item</font></td>";
                 }
 
@@ -375,7 +375,7 @@ class DB {
         ob_end_clean();
 
         // Only echo output if it is turned on
-        if ( $this->debug )
+        if ($this->debug)
         {
             echo $html;
         }

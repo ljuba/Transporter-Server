@@ -26,11 +26,11 @@ class NxtbusStopDirMap {
         $routeArray = Route::getRoutes($this->agency);
         $stopArray = Stop::getStops($this->agency);
 
-        foreach($this->xml->route as $r) {
+        foreach ($this->xml->route as $r) {
             $routeTag = (string) $r['tag'];
             $routeObj = $routeArray[$routeTag];
 
-            foreach($r->direction as $d) {
+            foreach ($r->direction as $d) {
 
                 $pos = 0;
                 $dirTag = (string) $d['tag'];
@@ -38,27 +38,27 @@ class NxtbusStopDirMap {
                 $dirObj = $directionArray[$dirTag];
 
                 //We're only interested in the directions we're showing
-                //if( ! $dirObj->getShow() ) { continue; }
+                //if (!$dirObj->getShow()) { continue; }
 
-                foreach($d->stop as $s) {
+                foreach ($d->stop as $s) {
                     $pos++;
 
                     $stopTag = (string) $s['tag'];
 
                     $tempStop = $stopArray[$stopTag];
-                    if( empty($tempStop)) { var_dump("$routeTag $stopTag"); }
+                    if (empty($tempStop)) { var_dump("$routeTag $stopTag"); }
                     $stopId = $tempStop->getId();
 
                     $tempDir = $directionArray[$dirTag];
                     $dirId = $tempDir->getId();
 
-                    $dbObj->bindParams( array($stopId, $dirId, $pos,
-                        TableUpdate::getVersion()) );
+                    $dbObj->bindParams(array($stopId, $dirId, $pos,
+                        TableUpdate::getVersion()));
                     $dbObj->query("INSERT INTO stop_direction_map
                         (stop_id, direction_id, position, version, created_date)
                         VALUES (?, ?, ?, ?, NOW())");
 
-                    if($dbObj->rows_affected != 1) {
+                    if ($dbObj->rows_affected != 1) {
                         //TODO: Log it
                     }
                 }

@@ -32,7 +32,7 @@ class DirectionUpdate extends TableUpdate {
         try {
             $liveRouteArray = Route::getLiveRoutes($this->route->getAgency());
 
-            if( array_key_exists($this->route->getTag(), $liveRouteArray) ) {
+            if (array_key_exists($this->route->getTag(), $liveRouteArray)) {
                 $liveRoute = $liveRouteArray[$this->route->getTag()];
 
                 return Direction::getDirections($liveRoute, TableUpdate::getLiveVersion());
@@ -54,7 +54,7 @@ class DirectionUpdate extends TableUpdate {
                 $this->getPrettyName($d->getName()), $d->getTag(),
                         ($d->getUseForUi() ? 1 : 0), ($d->getShow() ? 1 : 0), $version);
             //var_dump($boundParams);
-            $this->dbObj->bindParams( $boundParams );
+            $this->dbObj->bindParams($boundParams);
             $query = "INSERT INTO direction (route_id, title, pretty_title,
                 name, pretty_name, tag, use_for_ui, show, version, created_date)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
@@ -63,7 +63,7 @@ class DirectionUpdate extends TableUpdate {
             //$this->dbObj->debug();
             //print $query;
 
-            if($this->dbObj->rows_affected != 1) {
+            if ($this->dbObj->rows_affected != 1) {
                 throw new DBException("Addition of direction failed [agency:".
                         $this->route->getAgency()->getId() ."] [route tag:".
                         $this->route->getTag() ."] [route title:". $this->route->getTitle() ."]");
@@ -113,13 +113,13 @@ class DirectionUpdate extends TableUpdate {
     protected function dataUpdated(Direction $o, Direction $n) {
         $changes = array();
 
-        if($o->getName() != $n->getName()) {
+        if ($o->getName() != $n->getName()) {
             $changes["name"] = $o->getName(). " | " .$n->getName();
         }
-        if($o->getTitle() != $n->getTitle()) {
+        if ($o->getTitle() != $n->getTitle()) {
             $changes["title"] = $o->getTitle(). " | " .$n->getTitle();
         }
-        if($o->getUseForUi() != $n->getUseForUi()) {
+        if ($o->getUseForUi() != $n->getUseForUi()) {
             $changes["useForUI"] = $o->getUseForUi(). " | " .$n->getUseForUi();
         }
 

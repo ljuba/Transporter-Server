@@ -9,7 +9,7 @@ class Version {
 
         $versionsDb = $dbObj->get_results("SELECT * FROM version ORDER BY id");
 
-        if(null != $versionsDb) {
+        if (null != $versionsDb) {
             $versions = $versionsDb;
         }
 
@@ -26,7 +26,7 @@ class Version {
         $maxVersionCount = $config['max version count'];
         $minVersionCount = $config['min version count'];
 
-        if($maxVersionCount <=
+        if ($maxVersionCount <=
                 $dbObj->get_var("SELECT COUNT(1) FROM version WHERE active=false AND was_active=false")) {
 
             $oldVersionsArray = array();
@@ -38,7 +38,7 @@ class Version {
                 $oldVersionsArray[] = $o->id;
             }
 
-            if ( count($oldVersionsArray) > 0) {
+            if (count($oldVersionsArray) > 0) {
                 $query = "DELETE FROM version WHERE id IN (".
                             implode(",", $oldVersionsArray) .")";
                 $dbObj->query($query);
@@ -67,8 +67,8 @@ class Version {
         //Check if the version number is valid
         $dbObj->bindParams(array($version));
         $versionDetails = $dbObj->get_row("SELECT * FROM version WHERE id=?");
-        if(null != $versionDetails) {
-            if($versionDetails->images_generated != true) {
+        if (null != $versionDetails) {
+            if ($versionDetails->images_generated != true) {
                 throw new Exception("Map images have to be generated before
                     activating a version.");
             }
@@ -92,7 +92,7 @@ class Version {
 
         $query = "SELECT changes_present FROM version WHERE id = " .
                     TableUpdate::getVersion();
-        if(true == $dbObj->get_var($query)) {
+        if (true == $dbObj->get_var($query)) {
             return true;
         } else {
             return false;

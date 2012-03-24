@@ -1,5 +1,5 @@
 <?php
-if(!defined("KRONOS_NXTBUS")) { define("KRONOS_NXTBUS", dirname(__FILE__) . DIRECTORY_SEPARATOR); }
+if (!defined("KRONOS_NXTBUS")) { define("KRONOS_NXTBUS", dirname(__FILE__) . DIRECTORY_SEPARATOR); }
 
 require KRONOS_NXTBUS.'NxtbusRoute.php';
 require KRONOS_NXTBUS.'NxtbusDirection.php';

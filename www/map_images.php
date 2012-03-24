@@ -16,7 +16,7 @@ function generateMapImages($version) {
     $basePathConverted = "./data/images/$version/";
 
     //If the images already exist, we're re-generating. Delete the existing images
-    if ( file_exists ($basePathConverted) ) {
+    if (file_exists ($basePathConverted)) {
         Util::deleteAll($basePathConverted);
     }
 
@@ -49,7 +49,7 @@ function generateMapImages($version) {
     foreach ($agencyArray as $agencyTitle => $agencyObj) {
 
         //if("bart" == $agencyTitle || "actransit" == $agencyTitle) { continue; }
-        if("bart" == $agencyTitle) { continue; }
+        if ("bart" == $agencyTitle) { continue; }
         //print $agencyTitle;
 
         $agencyNode = $xml->addChild("agency");
@@ -58,7 +58,7 @@ function generateMapImages($version) {
 
         //Get the routes
         $routeArray = Route::getRoutes($agencyObj);
-        foreach($routeArray as $routeTag => $routeObj) {
+        foreach ($routeArray as $routeTag => $routeObj) {
             //if("1" != $routeObj->getTag()) { continue; }
             $zoom = BASE_ZOOM;
 
@@ -85,13 +85,13 @@ function generateMapImages($version) {
 
             //Fetch the last stop for all the directions in this route (with show=true)
             //NOTE: I know, very inefficient
-            $dbObj->bindParams( array($routeObj->getId()));
+            $dbObj->bindParams(array($routeObj->getId()));
             $dirs = $dbObj->get_results("SELECT id, tag FROM direction WHERE 
                     route_id=? AND show=true $versionClause");
 
             //if($dbObj->num_rows == 0) { print "<br />$agencyTitle - ". $routeObj->getTag() . "<br />"; }
 
-            while(true) {
+            while (true) {
                 $SW_delta_x  = ($SW_target_x - $center_x) >> (21 - $zoom);
                 $SW_delta_y  = ($SW_target_y - $center_y) >> (21 - $zoom);
                 $SW_marker_x = $center_offset_x + $SW_delta_x;
@@ -107,7 +107,7 @@ function generateMapImages($version) {
                 $NE_X_LIMIT = MAP_SIZE_X - RIGHT_EDGE;
                 $NE_Y_LIMIT = (MAP_SIZE_Y / 2) - round((FINAL_MAP_SIZE_Y - TOP_EDGE - BOTTOM_EDGE) / 2);
 
-                if($SW_marker_x > $SW_X_LIMIT && $SW_marker_y < $SW_Y_LIMIT
+                if ($SW_marker_x > $SW_X_LIMIT && $SW_marker_y < $SW_Y_LIMIT
                         && $NE_marker_x < $NE_X_LIMIT && $NE_marker_y > $NE_Y_LIMIT) {
                     break;
                 } else {
@@ -120,7 +120,7 @@ function generateMapImages($version) {
             $dirIds = array();
             $dirXYDetails = array();
             foreach ($dirs as $d) {
-                $dbObj->bindParams( array($d->id));
+                $dbObj->bindParams(array($d->id));
                 $stopDetails = $dbObj->get_row("SELECT * FROM stop WHERE id =
                                                 (SELECT stop_id FROM stop_direction_map
                                                     WHERE direction_id = ? $versionClause
@@ -154,7 +154,7 @@ function generateMapImages($version) {
                                                     ORDER BY stops DESC");
             //$dbObj->debug();
             $dirStopsArray = array();
-            foreach($dirWithStops as $dirStops) {
+            foreach ($dirWithStops as $dirStops) {
                 $skipCondition = (($dirStops->stops % 2) == 0) ?
                         " AND mod(b.position, 2) = 0 " : " AND mod(b.position, 2) = 1 ";
                 $stopsForPath = $dbObj->get_results("SELECT a.tag, b.position, a.latitude, a.longitude
@@ -169,13 +169,13 @@ function generateMapImages($version) {
 
                 //$dbObj->debug();exit;
                 $pathArray = array();
-                foreach($stopsForPath as $sp) {
+                foreach ($stopsForPath as $sp) {
                     $pathArray[] = $sp->latitude.",".$sp->longitude;
                 }
 
-                if("actransit" == $agencyTitle) {
+                if ("actransit" == $agencyTitle) {
                     $pathColor = "0x008969";
-                } elseif("sf-muni" == $agencyTitle) {
+                } elseif ("sf-muni" == $agencyTitle) {
                     $pathColor = "0xC74F3A";
                 }
 
@@ -190,7 +190,7 @@ function generateMapImages($version) {
 
             $pngImgFileName = $agencyTitle."_".$routeObj->getTag().".png";
 
-            if(! file_exists($basePathOrig) ) {
+            if (!file_exists($basePathOrig)) {
                 //print $basePathOrig;exit;
                 Util::createDir($basePathOrig);
             }
@@ -200,17 +200,17 @@ function generateMapImages($version) {
 
             if (!copy($url, $filePath)) {
                 $logStr = "Failed to copy $fileName \n";
-                $logger->log($logStr, Logger::WARN, "IMAGE" );
+                $logger->log($logStr, Logger::WARN, "IMAGE");
             }
 
             //Crop the image
             $intermediateImg_Y = (MAP_SIZE_Y / 2) + round((FINAL_MAP_SIZE_Y - TOP_EDGE - BOTTOM_EDGE) / 2) + BOTTOM_EDGE;
             $intermediateImg = imagecreatetruecolor(MAP_SIZE_X, $intermediateImg_Y);
             list($current_width, $current_height) = getimagesize($filePath);
-            if(! imagecopy($intermediateImg, imagecreatefrompng($filePath),
-                            0, 0, 0, 0, $current_width, $current_height) ) {
+            if (!imagecopy($intermediateImg, imagecreatefrompng($filePath),
+                            0, 0, 0, 0, $current_width, $current_height)) {
                 $logStr = "Failed to crop and copy image [$filePath]";
-                $logger->log($logStr, Logger::WARN, "IMAGE" );
+                $logger->log($logStr, Logger::WARN, "IMAGE");
             }
 
 
@@ -219,10 +219,10 @@ function generateMapImages($version) {
 
             $startFromTop_Y = $intermediateImg_Y - FINAL_MAP_SIZE_Y;
             $newImage = imagecreatetruecolor(MAP_SIZE_X, FINAL_MAP_SIZE_Y);
-            if(! imagecopy($newImage, $intermediateImg,
-                    0, 0, 0, $startFromTop_Y, MAP_SIZE_X, FINAL_MAP_SIZE_Y) ) {
+            if (!imagecopy($newImage, $intermediateImg,
+                    0, 0, 0, $startFromTop_Y, MAP_SIZE_X, FINAL_MAP_SIZE_Y)) {
                 $logStr = "Failed to crop and copy image [$newFilePath]";
-                $logger->log($logStr, Logger::WARN, "IMAGE" );
+                $logger->log($logStr, Logger::WARN, "IMAGE");
             } else {
                 imagejpeg($newImage, $newFilePath);
             }
@@ -269,13 +269,13 @@ function getPathString(array $pathArray) {
     $pathStr = implode("|", $pathArray);
     $stepCnt = 3; //We're retrieving alternate stop co-ordinates anyway.
 
-    while(true) {
+    while (true) {
 
-        if(strlen($pathStr) > 900) {
+        if (strlen($pathStr) > 900) {
             $tmpArray = array();
             $tmpPathArray = array_reverse($pathArray); //We absolutely need the last stop
             foreach ($tmpPathArray as $key => $xy) {
-                if($key < $stepCnt || ($key % $stepCnt == 0)) {
+                if ($key < $stepCnt || ($key % $stepCnt == 0)) {
                     $tmpArray[] = $xy;
                 }
             }
@@ -296,7 +296,7 @@ function getPathString(array $pathArray) {
 $version = $_GET['version'];
 TableUpdate::setVersion($version);
 
-if(! ctype_digit($version)) {
+if (!ctype_digit($version)) {
     print '0';
     
 } else {
@@ -304,7 +304,7 @@ if(! ctype_digit($version)) {
         generateMapImages($version);
 
         $dbObj = DBPool::getInstance();
-        $dbObj->bindParams( array($version) );
+        $dbObj->bindParams(array($version));
         $dbObj->query("UPDATE version SET images_generated=true WHERE id=?");
         
         print '1';

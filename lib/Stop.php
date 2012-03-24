@@ -26,13 +26,13 @@ class Stop {
         $dbObj = DBPool::getInstance();
 
         $version = ($version == 0) ? TableUpdate::getVersion() : $version;
-        $dbObj->bindParams( array($agency->getId(), TableUpdate::getVersion()));
+        $dbObj->bindParams(array($agency->getId(), TableUpdate::getVersion()));
         $stops = $dbObj->get_results("SELECT * FROM stop WHERE agency_id=?
             AND version = ?");
 
-        if($dbObj->num_rows > 0) {
+        if ($dbObj->num_rows > 0) {
             $stopArray = array();
-            foreach($stops as $s) {
+            foreach ($stops as $s) {
                $stopObj = new Stop();
 
                $stopObj->setId($s->id);

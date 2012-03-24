@@ -1,5 +1,5 @@
 <?php
-if(!defined("KRONOS_BART")) { define("KRONOS_BART", dirname(__FILE__) . DIRECTORY_SEPARATOR); }
+if (!defined("KRONOS_BART")) { define("KRONOS_BART", dirname(__FILE__) . DIRECTORY_SEPARATOR); }
 
 require KRONOS_BART.'BartRoute.php';
 require KRONOS_BART.'BartDirection.php';

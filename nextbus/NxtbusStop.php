@@ -38,11 +38,11 @@ class NxtbusStop {
 
         //Generate maps of stopTag => StopTitle and stopTag => [lat, lon] for
         //later look up
-        foreach($this->xml->route as $r) {
+        foreach ($this->xml->route as $r) {
 
-            foreach($r->stop as $s) {
+            foreach ($r->stop as $s) {
                 $stopTag = (string) $s['tag'];
-                $stopTitle = html_entity_decode( (string) $s['title'] );
+                $stopTitle = html_entity_decode((string) $s['title']);
 
                 $lat = (string) $s['lat'];
                 $lon = (string) $s['lon'];
@@ -55,7 +55,7 @@ class NxtbusStop {
         } //Routes
 
         //We'll only consider the stops in the directions with show=true
-        foreach($this->xml->route as $r) {
+        foreach ($this->xml->route as $r) {
             $routeTag = (string) $r['tag'];
             //if($routeTag != "25") {continue;}
             $routeObj = $routeArray[$routeTag];
@@ -70,12 +70,12 @@ class NxtbusStop {
              */
             $routeDirDetails = array();
 
-            foreach($r->direction as $d) {
+            foreach ($r->direction as $d) {
                 $dirTag = (string) $d['tag'];
                 $dirObj = $dirArray[$dirTag];
                 $dirStops = array();
 
-                //if( $dirObj->getShow() ) {
+                //if ($dirObj->getShow()) {
                     foreach ($d->stop as $s) {
                         $stopTag = (string) $s['tag'];
                         $stopTitle = $stopTitleMap[$stopTag];
@@ -91,7 +91,7 @@ class NxtbusStop {
             //let's find the flip stops
             foreach ($routeDirDetails as $fDirTag => $fDirStops) {
                 foreach ($routeDirDetails as $fDirTagDiffDir => $fDirStopsDiffDir) {
-                    if($fDirTag == $fDirTagDiffDir) {
+                    if ($fDirTag == $fDirTagDiffDir) {
                         continue;
                     }
 
@@ -102,11 +102,11 @@ class NxtbusStop {
                                 $fStopTag, $fStopTitle, $fDirStopsDiffDir);
 
                         //If we don't have any flip stops continue to the next stop
-                        if(count($fFlipStopInOppDir) == 0) {
+                        if (count($fFlipStopInOppDir) == 0) {
                             continue;
                         }
 
-                        if(count($fFlipStopInOppDir) > 1) {
+                        if (count($fFlipStopInOppDir) > 1) {
                             //We have encountered more than one stop at the
                             //same intersection in a different direction
                             //TODO: This has to go in the e-mail report
@@ -124,7 +124,7 @@ class NxtbusStop {
                                     $fStopTitle . "] [" . implode("|", $fstopLatLonMap) . "]";
                             //$this->logger->log($logStr, Logger::WARN, NxtbusStop::PACKAGE);
 
-                        } else if(! array_key_exists($fStopTag, $flipStopMap) ) {
+                        } else if (!array_key_exists($fStopTag, $flipStopMap)) {
                             $tempFlipStopTag = $fFlipStopInOppDir[0];
                             $flipStopMap[$fStopTag] = $tempFlipStopTag;
                             $flipStopMap[$tempFlipStopTag] = $fStopTag;
@@ -137,29 +137,29 @@ class NxtbusStop {
         //Check if any of the stops don't have a flip stop
         $uniqueStopsAcrossRoutes = array_unique($uniqueStopsAcrossRoutes);
         foreach ($uniqueStopsAcrossRoutes as $finalCheckStopTag) {
-            if(! array_key_exists($finalCheckStopTag, $flipStopMap)) {
+            if (!array_key_exists($finalCheckStopTag, $flipStopMap)) {
                 $flipStopMap[$finalCheckStopTag] = "";
             }
         }
 
         //Create the Stop objects
         $stopArray = array();
-        foreach($this->xml->route as $r) {
+        foreach ($this->xml->route as $r) {
 
             foreach ($r->stop as $s) {
                 $stopTag = (string) $s['tag'];
                 $stopTitle = html_entity_decode($s['title']);
 
-                if ( array_key_exists($stopTag, $flipStopMap) &&
-                        ! array_key_exists($stopTag, $stopArray) ) {
+                if (array_key_exists($stopTag, $flipStopMap) &&
+                        !array_key_exists($stopTag, $stopArray)) {
                     $stopObj = new Stop();
 
                     $stopObj->setAgency($this->agency);
                     $stopObj->setTag($stopTag);
-                    $stopObj->setTitle( (string) $stopTitle);
+                    $stopObj->setTitle((string) $stopTitle);
                     $stopObj->setFlipStopTag($flipStopMap[$stopTag]);
-                    $stopObj->setLatitude( (string)  $s['lat']);
-                    $stopObj->setLongitude( (string) $s['lon']);
+                    $stopObj->setLatitude((string)  $s['lat']);
+                    $stopObj->setLongitude((string) $s['lon']);
 
                     $stopArray[$stopTag] = $stopObj;
                 }
@@ -193,11 +193,11 @@ class NxtbusStop {
         //as $stopTag/$stopTitle
         $stopsInOppDir = array_keys($stopsInOppDir, $stopTitle);
 
-        if(count($stopsInOppDir) > 0) {
+        if (count($stopsInOppDir) > 0) {
             //We have stops in the opp. direction.
             //Return only the ones with a different stop tag (with reference to $stopTag
             foreach ($stopsInOppDir as $oppStopTag) {
-                if($stopTag != $oppStopTag) {
+                if ($stopTag != $oppStopTag) {
                     $finalArray[] = $oppStopTag;
                 }
             }
@@ -226,8 +226,8 @@ class NxtbusStop {
 
         $flipStopMap = array();
 
-        foreach($xml->agency as $tempAgency) {
-            if((string) $tempAgency["shortTitle"] != $agencyShortTitle) { continue; }
+        foreach ($xml->agency as $tempAgency) {
+            if ((string) $tempAgency["shortTitle"] != $agencyShortTitle) { continue; }
 
             foreach ($tempAgency->stop as $tempStop) {
                 $stopTag = (string) $tempStop["tag"];
@@ -235,7 +235,7 @@ class NxtbusStop {
 
                 $flipStopMap[$stopTag] = $flipStopTag;
 
-                if(! empty($flipStopTag) ) {
+                if (!empty($flipStopTag)) {
                     $flipStopMap[$flipStopTag] = $stopTag;
                 }
             }

@@ -4,7 +4,7 @@ define("ROOT", "../");
 require ROOT . 'www/header.php';
 
 $version = isset($_GET['version']) ? $_GET['version'] : "";
-if( empty($version) || !ctype_digit($version) ) {
+if (empty($version) || !ctype_digit($version)) {
     print "Version value is absent or invalid.";
     exit;
 }
@@ -15,7 +15,7 @@ function getRoutes (Agency $agency, $version) {
     $finalRouteArray = array();
 
     //Get the routes
-    $dbObj->bindParams( array($version, $agency->getId()) );
+    $dbObj->bindParams(array($version, $agency->getId()));
     $routes = $dbObj->get_results("SELECT b.tag AS routetag, a.tag AS dirtag
                                     FROM direction as a, route as b
                                     WHERE a.route_id=b.id
@@ -24,15 +24,15 @@ function getRoutes (Agency $agency, $version) {
                                         AND b.agency_id=?
                                     ORDER BY b.tag;");
 
-    if($dbObj->num_rows > 0) {
-        foreach($routes as $r) {
+    if ($dbObj->num_rows > 0) {
+        foreach ($routes as $r) {
             $routeTag = (string) $r->routetag;
             $routeArray[$routeTag][] = (string) $r->dirtag;
         }
 
         //Pick only the ones with more than 2 directions
         foreach ($routeArray as $routeTag => $dirs) {
-            if(count($dirs) > 2) {
+            if (count($dirs) > 2) {
                 $finalRouteArray[$routeTag] = $dirs;
             }
         }
@@ -47,7 +47,7 @@ function displayTable(Array $routeArray) {
                     <th>Route</th>
                     <th>Directions</th>
                 </tr>';
-    foreach($routeArray as $routeTag => $dirTagArray) {
+    foreach ($routeArray as $routeTag => $dirTagArray) {
         print '<tr>
                 <td>'. $routeTag .'</td>
                 <td>'. implode(", ", $dirTagArray) .'</td>

@@ -30,25 +30,25 @@ class NxtbusDirection {
         }
 
         //Add the directions for every route
-        foreach($this->xml->route as $r) {
+        foreach ($this->xml->route as $r) {
             $routeTag = (string) $r['tag'];
             $routeObj = $routeArray[$routeTag];
 
             //Build an array of direction objects
             $directionInfo = array();
 
-            foreach($r->direction as $d) {
+            foreach ($r->direction as $d) {
                 $dirObj = new Direction();
                 $dirTag = (string) $d['tag'];
                 $useForUiValue = (string) $d['useForUI'] == "false" ? false : true;
 
                 $dirObj->setRoute($routeObj);
                 $dirObj->setTag($dirTag);
-                $dirObj->setTitle( (string) $d['title']);
-                $dirObj->setName( (string)  $d['name']);
-                $dirObj->setUseForUi( $useForUiValue );
-                $dirObj->setShow( $this->getShowValue($routeTag, $dirTag,
-                        $useForUiValue) );
+                $dirObj->setTitle((string) $d['title']);
+                $dirObj->setName((string) $d['name']);
+                $dirObj->setUseForUi($useForUiValue);
+                $dirObj->setShow($this->getShowValue($routeTag, $dirTag,
+                        $useForUiValue));
 
                 $directionInfo[$dirTag] = $dirObj;
             }
@@ -74,10 +74,10 @@ class NxtbusDirection {
      */
     private function getShowValue($routeTag, $dirTag, $userForUiValue) {
         $overrideArray = $this->getDirectionOverrides();
-        if ( isset($overrideArray[$routeTag]) ) {
+        if (isset($overrideArray[$routeTag])) {
             $dirArray = $overrideArray[$routeTag];
 
-            if( in_array($dirTag, $dirArray) ) {
+            if (in_array($dirTag, $dirArray)) {
                 return true;
             } else {
                 return false;
@@ -102,7 +102,7 @@ class NxtbusDirection {
             $shortTitle = $a['shortTitle'];
 
             //We only want the overrides for the current agency
-            if($this->agency->getShortTitle() == $shortTitle) {
+            if ($this->agency->getShortTitle() == $shortTitle) {
                 foreach ($a->route as $r) {
                     $routeTag = (string) $r['tag'];
 

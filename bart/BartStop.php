@@ -45,9 +45,9 @@ class BartStop {
 
             $stopObj->setAgency($this->agency);
             $stopObj->setTag($stationTag);
-            $stopObj->setTitle( (string) $stationInfoXml->stations->station->name);
-            $stopObj->setLatitude( (string) $stationInfoXml->stations->station->gtfs_latitude);
-            $stopObj->setLongitude( (string) $stationInfoXml->stations->station->gtfs_longitude);
+            $stopObj->setTitle((string) $stationInfoXml->stations->station->name);
+            $stopObj->setLatitude((string) $stationInfoXml->stations->station->gtfs_latitude);
+            $stopObj->setLongitude((string) $stationInfoXml->stations->station->gtfs_longitude);
 
             $stopArray[$stationTag] = $stopObj;
 
@@ -60,8 +60,8 @@ class BartStop {
             //Add platform node as a child of the stop node (north)
             $platformNode = $stopNode->addChild("platform");
             $northPlatforms = array();
-            foreach($stationInfoXml->stations->station->north_platforms as $p) {
-                foreach($p as $pNum) {
+            foreach ($stationInfoXml->stations->station->north_platforms as $p) {
+                foreach ($p as $pNum) {
                     $northPlatforms[] = trim((string) $pNum);
                 }
             }
@@ -82,8 +82,8 @@ class BartStop {
             //Add platform node as a child of the stop node (south)
             $platformNode = $stopNode->addChild("platform");
             $southPlatforms = array();
-            foreach($stationInfoXml->stations->station->south_platforms as $p) {
-                foreach($p as $pNum) {
+            foreach ($stationInfoXml->stations->station->south_platforms as $p) {
+                foreach ($p as $pNum) {
                     $southPlatforms[] = trim((string) $pNum);
                 }
             }

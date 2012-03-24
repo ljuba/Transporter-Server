@@ -7,7 +7,7 @@ class OverrideFile {
     public static function getContents($fileType) {
         $filePath = Configuration::getBasePath() . "files/" . $fileType .".xml";
 
-        if(! file_exists($filePath)) {
+        if (!file_exists($filePath)) {
             throw new Exception ("File does not exist");
         }
 
