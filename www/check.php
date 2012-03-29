@@ -9,20 +9,20 @@ $dbObj = DBPool::getInstance();
 
 $response = '<?xml version="1.0" encoding="UTF-8" ?>';
 
-if(isset($_GET['v'])) {
+if (isset($_GET['v'])) {
     $version = $_GET['v'];
-    if(! ctype_digit($version)) {
+    if (!ctype_digit($version)) {
         exit;
     }
 
-    $dbObj->bindParams( array( $version ) );
+    $dbObj->bindParams(array($version));
     $versionDetails = $dbObj->get_row("SELECT id, created_date FROM version WHERE id=?");
     
 } else {
     $versionDetails = $dbObj->get_row("SELECT id, created_date FROM version WHERE active=true");
 }
 
-if(null == $versionDetails) {
+if (null == $versionDetails) {
     $response .= '<error>Check if the version number is valid or if there is a live version in the database</error>';
 } else {
     $response = '<update version="'.$versionDetails->id.'" resource="http://'. 
@@ -33,4 +33,3 @@ if(null == $versionDetails) {
 }
 
 print $response;
-?>

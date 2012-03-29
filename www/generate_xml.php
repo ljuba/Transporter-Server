@@ -44,12 +44,12 @@ function generateXMLFile(Agency $agencyObj) {
             $dir->addAttribute("show", $d->getShow() ? "true" : "false");
             $dir->addAttribute("useForUI", $d->getUseForUi() ? "true" : "false");
 
-            $dbObj->bindParams(array( $d->getId() ));
+            $dbObj->bindParams(array($d->getId()));
             $stopDirMap = $dbObj->get_results("SELECT a.tag, b.position
                                                 FROM stop as a, stop_direction_map as b
                                                 WHERE a.id=b.stop_id AND b.direction_id=?
                                                 ORDER BY b.position");
-            if($dbObj->num_rows > 0) {
+            if ($dbObj->num_rows > 0) {
                 foreach ($stopDirMap as $m) {
                     $map = $dir->addChild("stop");
                     $map->addAttribute("tag", $m->tag);
@@ -62,5 +62,3 @@ function generateXMLFile(Agency $agencyObj) {
 
     Util::prettyPrintXml($xml, $fileName);
 }
-
-?>

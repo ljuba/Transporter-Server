@@ -42,7 +42,7 @@ class StopUpdate extends TableUpdate {
             $boundParams = array($this->agency->getId(), $s->getTag(),
                 $s->getLatitude(), $s->getLongitude(), $s->getTitle(),
                 $this->getPrettyTitle($s->getTitle()), $s->getFlipStopTag(), $version);
-            $this->dbObj->bindParams( $boundParams );
+            $this->dbObj->bindParams($boundParams);
 
             $query = "INSERT INTO stop (agency_id, tag, latitude, longitude, 
                 title, pretty_title, flip_stop_tag, version, created_date)
@@ -50,7 +50,7 @@ class StopUpdate extends TableUpdate {
 
             $this->dbObj->query($query);
 
-            if($this->dbObj->rows_affected != 1) {
+            if ($this->dbObj->rows_affected != 1) {
                 //$this->dbObj->debug();exit;
                 throw new DBException("Addition of stop failed [agency:".
                         $this->agency->getId() ."] [stop tag:". $s->getTag(). "]");
@@ -101,16 +101,16 @@ class StopUpdate extends TableUpdate {
     protected function dataUpdated(Stop $o, Stop $n) {
         $changes = array();
 
-        if($o->getFlipStopTag() != $n->getFlipStopTag()) {
+        if ($o->getFlipStopTag() != $n->getFlipStopTag()) {
             $changes["flip stop tag"] = $o->getFlipStopTag(). " | " .$n->getFlipStopTag();
         }
-        if($o->getTitle() != $n->getTitle()) {
+        if ($o->getTitle() != $n->getTitle()) {
             $changes["title"] = $o->getTitle(). " | " .$n->getTitle();
         }
-        if($o->getLatitude() != $n->getLatitude()) {
+        if ($o->getLatitude() != $n->getLatitude()) {
             $changes["latitude"] = $o->getLatitude(). " | " .$n->getLatitude();
         }
-        if($o->getLongitude() != $n->getLongitude()) {
+        if ($o->getLongitude() != $n->getLongitude()) {
             $changes["longitude"] = $o->getLongitude(). " | " .$n->getLongitude();
         }
 
@@ -118,4 +118,3 @@ class StopUpdate extends TableUpdate {
     }
 
 }
-?>

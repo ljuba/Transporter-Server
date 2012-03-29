@@ -20,12 +20,12 @@ try {
         file_put_contents(Util::getChangeLogFile(), "\n".strtoupper($agencyTitle)."\n\n",
                     FILE_APPEND);
 
-        if("actransit" == $agencyTitle || "sf-muni" == $agencyTitle ||
+        if ("actransit" == $agencyTitle || "sf-muni" == $agencyTitle ||
                     "emery" == $agencyTitle) {
             /*
-            if("sf-muni" == $agencyTitle) {
+            if ("sf-muni" == $agencyTitle) {
                 $agencyObj->setDataUrl("./files/sf-muni.xml");
-            } else if("actransit" == $agencyTitle) {
+            } else if ("actransit" == $agencyTitle) {
                 $agencyObj->setDataUrl("./files/actransit.xml");
             }
             */
@@ -55,7 +55,7 @@ try {
             //print "Stop-Dir map updated";
 
 
-        } else if("bart" == $agencyTitle) {
+        } else if ("bart" == $agencyTitle) {
 
             $bartXmlObjBuilder = new BartXmlObjBuilder();
 
@@ -98,7 +98,7 @@ try {
 
     $mailMessage = "Version: " . TableUpdate::getVersion();
     $mailMessage .= "\n\nThe job was executed successfully without any errors.";
-    if(Version::changesPresentInCurrentVersion()) {
+    if (Version::changesPresentInCurrentVersion()) {
         $mailMessage .= "\nChanges were detected when compared with the live version.
             Please login to the admin console for the changelog.";
     } else {
@@ -116,4 +116,3 @@ try {
 
 $subject = "Kronos Server update for " . date("Y-m-d");
 Util::mail($config['email ids'], $subject, $mailMessage);
-?>

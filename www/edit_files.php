@@ -26,4 +26,5 @@ $message = "";
     <button id="edit_file" type="button">Update</button>
 </form>
 
-<?php require 'footer.php'; ?>
+<?php
+require 'footer.php';

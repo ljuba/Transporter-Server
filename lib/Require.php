@@ -1,5 +1,5 @@
 <?php
-if(!defined("KRONOS_LIB")) { define("KRONOS_LIB", dirname(__FILE__) . DIRECTORY_SEPARATOR); }
+if (!defined("KRONOS_LIB")) { define("KRONOS_LIB", dirname(__FILE__) . DIRECTORY_SEPARATOR); }
 
 //Base
 require KRONOS_LIB.'base'. DIRECTORY_SEPARATOR . 'BaseException.php';
@@ -29,4 +29,3 @@ require KRONOS_LIB.'XmlObjBuilder.php';
 
 require KRONOS_LIB.'Version.php';
 require KRONOS_LIB.'OverrideFile.php';
-?>

@@ -30,10 +30,10 @@ class BartDirection {
             $directionInfo = array();
 
             //Add the directions for every route
-            foreach($this->xml->routes->route as $d) {
+            foreach ($this->xml->routes->route as $d) {
                 $tempRouteTag = BartColorCodes::getBartColor(substr((string) $d->color, 1));
 
-                if($tempRouteTag == $routeTag) {
+                if ($tempRouteTag == $routeTag) {
                     $dirObj = new Direction();
 
                     $dirTag = (string) $d->number;
@@ -41,10 +41,10 @@ class BartDirection {
 
                     $dirObj->setRoute($routeObj);
                     $dirObj->setTag($dirTag);
-                    $dirObj->setTitle( $this->formatTitle((string) $d->name));
-                    $dirObj->setName( (string)  $d->abbr);
-                    $dirObj->setUseForUi( $useForUiValue );
-                    $dirObj->setShow( $useForUiValue );
+                    $dirObj->setTitle($this->formatTitle((string) $d->name));
+                    $dirObj->setName((string) $d->abbr);
+                    $dirObj->setUseForUi($useForUiValue);
+                    $dirObj->setShow($useForUiValue);
 
                     $directionInfo[$dirTag] = $dirObj;
                 }
@@ -70,4 +70,3 @@ class BartDirection {
         return trim($title);
     }
 }
-?>

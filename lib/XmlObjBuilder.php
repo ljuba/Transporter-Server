@@ -20,7 +20,7 @@ class XmlObjBuilder {
         $xmlStr = $this->getData($getNextBus);
         //$xmlStr = file_get_contents($this->dataPath);
 
-	$xml = new SimpleXMLElement($xmlStr);
+        $xml = new SimpleXMLElement($xmlStr);
 
         return $xml;
     }
@@ -32,11 +32,11 @@ class XmlObjBuilder {
 
         $filePath = $cacheDirPath . md5($this->dataPath);
 
-        if($getNextBus == false) {
+        if ($getNextBus == false) {
             $data = file_get_contents($this->dataPath);
 
-        } else if(file_exists($filePath)) {
-            if( (time() - filemtime($filePath)) > self::CACHE_SECONDS ) {
+        } else if (file_exists($filePath)) {
+            if ((time() - filemtime($filePath)) > self::CACHE_SECONDS) {
                 $data = file_get_contents($this->dataPath);
                 file_put_contents($filePath, $data);
             } else {
@@ -51,4 +51,3 @@ class XmlObjBuilder {
     }
 
 }
-?>

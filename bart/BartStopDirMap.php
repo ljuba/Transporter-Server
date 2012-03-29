@@ -28,7 +28,7 @@ class BartStopDirMap {
         $stopArray = Stop::getStops($this->agency);
         $bartApiKey = $this->appConfig['BART_API_KEY'];
 
-        foreach($routeArray as $routeTag => $routeObj) {
+        foreach ($routeArray as $routeTag => $routeObj) {
 
             $pos = 0;
             $directionArray = Direction::getDirections($routeObj);
@@ -36,7 +36,7 @@ class BartStopDirMap {
             foreach ($directionArray as $dirTag => $dirObj) {
 
                 //We're only interested in the directions we're showing
-                if( ! $dirObj->getShow() ) { continue; }
+                if (!$dirObj->getShow()) { continue; }
 
                 //Fetch the direction details
                 $apiURL = str_replace(BartApiEndPoints::DIRECTION, $dirObj->getTag(),
@@ -44,8 +44,8 @@ class BartStopDirMap {
                 $dirInfoXmlBuilder = new XmlObjBuilder($apiURL);
                 $dirInfoXml = $dirInfoXmlBuilder->getXmlObj();
 
-                foreach($dirInfoXml->routes->route->config as $c) {
-                    foreach($c as $station) {
+                foreach ($dirInfoXml->routes->route->config as $c) {
+                    foreach ($c as $station) {
                         $pos++;
 
                         $stopTag = (string) $station;
@@ -56,13 +56,13 @@ class BartStopDirMap {
                         $tempDirObj = $directionArray[$dirTag];
                         $dirId = $tempDirObj->getId();
 
-                        $dbObj->bindParams( array($stopId, $dirId, $pos, 
-                            TableUpdate::getVersion()) );
+                        $dbObj->bindParams(array($stopId, $dirId, $pos, 
+                            TableUpdate::getVersion()));
                         $dbObj->query("INSERT INTO stop_direction_map
                             (stop_id, direction_id, position, version, created_date)
                             VALUES (?, ?, ?, ?, NOW())");
 
-                        if($dbObj->rows_affected != 1) {
+                        if ($dbObj->rows_affected != 1) {
                             //TODO: Log it
                         }
                     } //Stations
@@ -71,4 +71,3 @@ class BartStopDirMap {
         } //Routes
     }
 }
-?>

@@ -2,7 +2,7 @@
 require ROOT . 'config/config.php';
 require ROOT . 'lib/Require.php';
 
-date_default_timezone_set( $config['timezone'] );
+date_default_timezone_set($config['timezone']);
 
 //Configure DB access
 $dbConfig = array (
@@ -19,5 +19,3 @@ Configuration::setAppConfig($config);
 
 //Configure the Logger
 Logger::configure();
-
-?>

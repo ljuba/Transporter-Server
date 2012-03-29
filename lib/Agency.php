@@ -15,10 +15,10 @@ class Agency {
 
         $agencies = $dbObj->get_results("SELECT * FROM agency");
 
-        if($dbObj->num_rows > 0) {
+        if ($dbObj->num_rows > 0) {
             $agencyArray = array();
 
-            foreach($agencies as $a) {
+            foreach ($agencies as $a) {
                 $agencyObj = new Agency();
 
                 $agencyObj->setId($a->id);
@@ -68,4 +68,3 @@ class Agency {
     }
 
 }
-?>

@@ -13,11 +13,10 @@ class BartColorCodes {
 
     public static function getBartColor($routeColor) {
         $bartColors = BartColorCodes::$colors;
-        if( isset($bartColors[$routeColor]) ) {
+        if (isset($bartColors[$routeColor])) {
             return $bartColors[$routeColor];
         } else {
             return $routeColor;
         }
     }
 }
-?>

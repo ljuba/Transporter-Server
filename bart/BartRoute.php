@@ -24,7 +24,7 @@ class BartRoute {
         $routeArray = array();
         $position = 0;
 
-        foreach($this->xml->routes->route as $r) {
+        foreach ($this->xml->routes->route as $r) {
             $position++;
             $route = new Route();
             $routeColor = substr((string) $r->color, 1); // We don't want the #
@@ -51,4 +51,3 @@ class BartRoute {
         }
     }
 }
-?>

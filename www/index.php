@@ -6,8 +6,8 @@ require ROOT . 'www/header.php';
 $message = "";
 
 //Do we need to set a version as active?
-if(isset($_GET['setactive'])) {
-    if(ctype_digit($_GET['setactive'])) {
+if (isset($_GET['setactive'])) {
+    if (ctype_digit($_GET['setactive'])) {
         $activeVersion = $_GET['setactive'];
         try {
             Version::setAsActive($activeVersion);
@@ -43,7 +43,7 @@ $versions = Version::getVersions();
         <th>Download</th>
     </tr>
 <?php
-foreach($versions as $v) {
+foreach ($versions as $v) {
     print '<tr>
             <td>'. $v->id .'</td>';
 
@@ -68,4 +68,5 @@ foreach($versions as $v) {
 
 </table>
         
-<?php require 'footer.php'; ?>
+<?php
+require 'footer.php';

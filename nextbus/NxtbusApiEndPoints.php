@@ -7,4 +7,3 @@ class NxtbusApiEndPoints {
     const EMERY_ROUTE_LIST = "http://www.nextbus.com/s/COM.NextBus.Servlets.XMLFeed?command=routeList&a=";
     const EMERY_ROUTE_CONFIG = "http://www.nextbus.com/s/COM.NextBus.Servlets.XMLFeed?command=routeConfig&verbose=1&a=";
 }
-?>
