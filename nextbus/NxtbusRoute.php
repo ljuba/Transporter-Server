@@ -27,7 +27,7 @@ class NxtbusRoute {
         $position = 0;
         $vehicleTypeOverrides = $this->getVehicleTypeOverride();
 
-        foreach($this->xml->route as $r) {
+        foreach ($this->xml->route as $r) {
             $route = new Route();
             $routeTag = (string) $r['tag'];
             $vehicleType = isset ($vehicleTypeOverrides[$routeTag]) ?
@@ -41,10 +41,10 @@ class NxtbusRoute {
             $route->setPosition($position);
             $route->setVehicleType($vehicleType);
             $route->setColor((string)$r['color']);
-            $route->setLatMin( isset($r['latMin']) ? (string)$r['latMin'] : "" );
-            $route->setLatMax( isset($r['latMax']) ? (string)$r['latMax'] : "" );
-            $route->setLonMin( isset($r['lonMin']) ? (string)$r['lonMin'] : "" );
-            $route->setLonMax( isset($r['lonMax']) ? (string)$r['lonMax'] : "" );
+            $route->setLatMin(isset($r['latMin']) ? (string)$r['latMin'] : "");
+            $route->setLatMax(isset($r['latMax']) ? (string)$r['latMax'] : "");
+            $route->setLonMin(isset($r['lonMin']) ? (string)$r['lonMin'] : "");
+            $route->setLonMax(isset($r['lonMax']) ? (string)$r['lonMax'] : "");
 
             $routeArray[$routeTag] = $route;
         }
@@ -57,7 +57,7 @@ class NxtbusRoute {
             throw new Exception($ex->getMessage());
         }
     }
-    
+
     private function getVehicleTypeOverride() {
         $agencyShortTitle = $this->agency->getShortTitle();
 
@@ -66,12 +66,12 @@ class NxtbusRoute {
 
         //TODO: Check for exception
         $xmlObjBuilder = new XmlObjBuilder($filePath);
-	$xml = $xmlObjBuilder->getXmlObj();
+        $xml = $xmlObjBuilder->getXmlObj();
 
         $vehicleOverrides = array();
 
         //We only support SF-Muni for now
-        if($agencyShortTitle == "sf-muni") {
+        if ($agencyShortTitle == "sf-muni") {
 
             foreach ($xml->route as $r) {
                 $routeTag = (string) $r['tag'];
@@ -84,4 +84,3 @@ class NxtbusRoute {
         return $vehicleOverrides;
     }
 }
-?>

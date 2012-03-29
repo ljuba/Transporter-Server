@@ -12,4 +12,3 @@ print '<html>
             <script type="text/javascript" src="./static/js/script.js?v='.$time.'"></script>
         </head>
         <body>';
-?>

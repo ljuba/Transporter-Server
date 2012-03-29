@@ -39,13 +39,13 @@ class Route {
         $dbObj = DBPool::getInstance();
 
         $version = ($version == 0) ? TableUpdate::getVersion() : $version;
-        $dbObj->bindParams( array($agency->getId(), $version));
+        $dbObj->bindParams(array($agency->getId(), $version));
         $routes = $dbObj->get_results("SELECT * FROM route WHERE agency_id=?
             AND version = ? ORDER BY position");
 
-        if($dbObj->num_rows > 0) {
+        if ($dbObj->num_rows > 0) {
             $routeArray = array();
-            foreach($routes as $r) {
+            foreach ($routes as $r) {
                 $routeObj = new Route();
 
                 $routeObj->setId($r->id);
@@ -182,4 +182,3 @@ class Route {
         $this->position = $position;
     }
 }
-?>

@@ -23,13 +23,13 @@ class Direction {
         $dbObj = DBPool::getInstance();
 
         $version = ($version == 0) ? TableUpdate::getVersion() : $version;
-        $dbObj->bindParams( array($route->getId(), $version));
+        $dbObj->bindParams(array($route->getId(), $version));
         $directions = $dbObj->get_results("SELECT * FROM direction WHERE route_id=?
             AND version = ?");
 
-        if($dbObj->num_rows > 0) {
+        if ($dbObj->num_rows > 0) {
             $directionArray = array();
-            foreach($directions as $d) {
+            foreach ($directions as $d) {
                 $dirObj = new Direction();
 
                 $dirObj->setId($d->id);
@@ -128,4 +128,3 @@ class Direction {
 
 
 }
-?>

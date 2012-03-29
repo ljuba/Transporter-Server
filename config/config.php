@@ -48,5 +48,3 @@ static $config = array(
 //BART and Nextbus API end points
 //Refer to ROOT/bart/BartApiEndPoints.php and ROOT/nextbus/NxtbusApiEndPoints.php
 );
-
-?>

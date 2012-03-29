@@ -21,7 +21,7 @@ class Configuration {
     }
 
     public static function getBasePath() {
-        if(! isset(self::$appConfig['base_path']) ) {
+        if (!isset(self::$appConfig['base_path'])) {
             throw new BaseException("Mandatory configuration value missing (base path)", 100);
         }
 
@@ -29,7 +29,7 @@ class Configuration {
     }
 
     public static function getLogFileLocation() {
-        if(! isset(self::$appConfig['log_file']) ) {
+        if (!isset(self::$appConfig['log_file'])) {
             throw new BaseException("Mandatory configuration value missing (Log file)", 100);
         }
 
@@ -37,11 +37,10 @@ class Configuration {
     }
 
     public static function getEnvironment() {
-        if(! isset(self::$appConfig['environment']) ) {
+        if (!isset(self::$appConfig['environment'])) {
                 throw new BaseException("Mandatory configuration value missing (Environment)", 105);
         }
 
         return self::$appConfig['environment'];
     }
 }
-?>

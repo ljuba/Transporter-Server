@@ -14,4 +14,3 @@ class BartApiEndPoints {
     const ROUTE_INFO = 'http://api.bart.gov/api/route.aspx?cmd=routeinfo&route=%DIRECTION%&key=';
     const DIRECTION = '%DIRECTION%';
 }
-?>

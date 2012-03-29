@@ -31,22 +31,22 @@ class Util {
     public static function deleteAll($directory, $empty = false) {
         $logger = Logger::getInstance();
         
-        if(substr($directory,-1) == "/") {
+        if (substr($directory,-1) == "/") {
             $directory = substr($directory,0,-1);
         }
 
-        if(!file_exists($directory) || !is_dir($directory)) {
+        if (!file_exists($directory) || !is_dir($directory)) {
             return false;
-        } elseif(!is_readable($directory)) {
+        } elseif (!is_readable($directory)) {
             return false;
         } else {
             $directoryHandle = opendir($directory);
 
             while ($contents = readdir($directoryHandle)) {
-                if($contents != '.' && $contents != '..') {
+                if ($contents != '.' && $contents != '..') {
                     $path = $directory . "/" . $contents;
 
-                    if(is_dir($path)) {
+                    if (is_dir($path)) {
                         self::deleteAll($path);
                     } else {
                         unlink($path);
@@ -56,14 +56,14 @@ class Util {
 
             closedir($directoryHandle);
 
-            if($empty == false) {
-                if(!rmdir($directory)) {
+            if ($empty == false) {
+                if (!rmdir($directory)) {
                     return false;
                 }
             }
 
             $logStr = "Deleted - " . $directory;
-            $logger->log($logStr, Logger::INFO, "UTIL" );
+            $logger->log($logStr, Logger::INFO, "UTIL");
 
             return true;
         }
@@ -74,7 +74,7 @@ class Util {
     public static function mail($to, $subject, $message, $from = 'cron@transporterapp.net') {
 
             //Send e-mails only in production environments
-            if(Configuration::getEnvironment() == Environment::PRODUCTION) {
+            if (Configuration::getEnvironment() == Environment::PRODUCTION) {
                 // Do a little spring cleaning
                 $to = trim(preg_replace('#[\n\r]+#s', '', $to));
                 $subject = trim(preg_replace('#[\n\r]+#s', '', $subject));
@@ -91,7 +91,7 @@ class Util {
             $logger = Logger::getInstance();
             $logStr = "Sent e-mail [env: ". Configuration::getEnvironment() ."]
                 [to: " . $to . "] [subject: " . $subject ."] [message: " . $message . "]";
-            $logger->log($logStr, Logger::INFO, Util::PACKAGE );
+            $logger->log($logStr, Logger::INFO, Util::PACKAGE);
     }//End of 'mail' method
 
     public static function getBaseDirectoryPath($type) {
@@ -110,7 +110,7 @@ class Util {
     }
 
     public static function createDir($path) {
-        if(! file_exists($path) ) {
+        if (!file_exists($path)) {
             if (!mkdir($path, 0777, true)) {
                 throw new Exception("$path could not be created");
             }
@@ -141,28 +141,28 @@ class Util {
      */
     public static function createZip(array $files = array(),$destination = '',$overwrite = false) {
         //if the zip file already exists and overwrite is false, return false
-        if(file_exists($destination) && !$overwrite) { return false; }
+        if (file_exists($destination) && !$overwrite) { return false; }
         //vars
         $valid_files = array();
         //if files were passed in...
-        if(is_array($files)) {
+        if (is_array($files)) {
             //cycle through each file
-            foreach($files as $file) {
+            foreach ($files as $file) {
                 //make sure the file exists
-                if(file_exists($file)) {
+                if (file_exists($file)) {
                         $valid_files[] = $file;
                 }
             }
         }
         //if we have good files...
-        if(count($valid_files)) {
+        if (count($valid_files)) {
             //create the archive
             $zip = new ZipArchive();
-            if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
+            if ($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
                 return false;
             }
             //add the files
-            foreach($valid_files as $file) {
+            foreach ($valid_files as $file) {
                 $zip->addFile($file, basename($file));
             }
             //debug
@@ -193,4 +193,3 @@ class Util {
         }
     }
 }
-?>

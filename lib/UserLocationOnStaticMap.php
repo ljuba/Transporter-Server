@@ -74,5 +74,3 @@ $marker_y = $center_offset_y + $delta_y;
 $marker_y = $marker_y - $yCropPixels; //$yCropPixels is available in the XML file per route
 
 //Final x,y co-ordinates where you can show the user's current location is ($marker_x, $marker_y)
-
-?>

@@ -17,13 +17,13 @@ class NxtbusXmlObjBuilder {
     public function getXmlObj($getNextBus) {
         $routeXmlObj = $this->getRoutes();
         
-        if ( count($routeXmlObj->route) >= self::$MAX_ROUTES ) {
+        if (count($routeXmlObj->route) >= self::$MAX_ROUTES) {
             //There are more than 100 routes, we need to fetch each one separately
             $xmlStr = '<?xml version="1.0" encoding="utf-8" ?><body></body>';
             $xmlObj = new SimpleXMLElement($xmlStr);
 
             $cnt = 0;
-            foreach($routeXmlObj->route as $r) {
+            foreach ($routeXmlObj->route as $r) {
                 $routeTag = (string) $r['tag'];
 
                 $routeConfigUrl = $this->getRouteConfigApiUrl() .
@@ -32,7 +32,7 @@ class NxtbusXmlObjBuilder {
                 $xmlObjBuilder = new XmlObjBuilder($routeConfigUrl);
                 $routeConfigXmlObj = $xmlObjBuilder->getXmlObj(true);
 
-                foreach($routeConfigXmlObj->route as $rc) {
+                foreach ($routeConfigXmlObj->route as $rc) {
                     Util::AddXMLElement($xmlObj, $rc);
                 }
             }
@@ -69,4 +69,3 @@ class NxtbusXmlObjBuilder {
     }
 
 }
-?>

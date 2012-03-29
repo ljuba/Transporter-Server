@@ -27,7 +27,7 @@ class Logger {
      * @return Object of this class
      */
     public static function getInstance() {
-        if(!self::$_instance) {
+        if (!self::$_instance) {
             $className = __CLASS__;
             self::$_instance = new $className();
         }
@@ -54,4 +54,3 @@ class Logger {
         $rc = file_put_contents($filepath, $log, FILE_APPEND);
     }
 }
-?>
