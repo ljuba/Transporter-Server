@@ -98,10 +98,6 @@ Deployment
     under which the Kronos server will run and set KRONOS_ROOT/www/ as the
     document root of the virtual host.
 
-In production, I've set up an Apache virtual host for the domain exergydesign.com
-So, the admin interface is available at http://exergydesign.com/index.php or
-http://exergydesign.com
-
 Updating the data from NextBus and BART APIs
 ============================================
 The script KRONOS_ROOT/www/update.php is where this happens. Reading the code
@@ -115,7 +111,7 @@ any debug print statements in the code) after the script completes execution.
 On the server, the same script needs to be executed once a day. It is done
 through a cron job like so:
 
-`0 19 * * * curl http://exergydesign.com/update.php >> /dev/null 2>&1`
+`0 19 * * * curl http://example.com/update.php >> /dev/null 2>&1`
 
 The `KRONOS_ROOT/www/update.php` script communicates with NextBus and BART,
 updates the database with a new version and creates the XML files. It does not
