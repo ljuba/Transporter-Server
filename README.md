@@ -130,3 +130,6 @@ Miscellaneous
     to them directly when they are edited in the admin UI. So, Apache should have
     permission to write to them.
 
+**License**
+For non-commerical use only!
+
