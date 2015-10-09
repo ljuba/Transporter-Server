@@ -131,5 +131,5 @@ Miscellaneous
     permission to write to them.
 
 **License**
-For non-commerical use only!
+For non-commercial use only!
 
